@@ -1,15 +1,13 @@
 const express = require('express');
-const { getRandomQuote, createQuote, getUserQuotes } = require('../controllers/quoteController');
+const { getRandomQuote, getUserQuotes, createQuote, updateQuote, deleteQuote } = require('../controllers/quoteController');
 const authMiddleware = require('../middleware/authMiddleware');
-
-console.log('getRandomQuote:', getRandomQuote);
-console.log('createQuote:', createQuote);
-console.log('getUserQuotes:', getUserQuotes);
 
 const router = express.Router();
 
-router.get('/random', getRandomQuote);
+router.get('/random', authMiddleware, getRandomQuote);
+router.get('/:username', authMiddleware, getUserQuotes);
 router.post('/', authMiddleware, createQuote);
-router.get('/:userId', getUserQuotes);
+router.put('/:id', authMiddleware, updateQuote);
+router.delete('/:id', authMiddleware, deleteQuote);
 
 module.exports = router;

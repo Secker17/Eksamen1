@@ -8,9 +8,6 @@ dotenv.config();
 const authRoutes = require('./routes/authRoutes');
 const quoteRoutes = require('./routes/quoteRoutes');
 
-console.log('authRoutes:', authRoutes);
-console.log('quoteRoutes:', quoteRoutes);
-
 const app = express();
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -19,15 +16,15 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => {
   console.log('MongoDB connected');
 }).catch(err => {
-  console.error(err.message);
+  console.error('Error connecting to MongoDB:', err.message);
   process.exit(1);
 });
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/quotes', quoteRoutes);
+app.use('/api/auth', authRoutes); // Auth routes
+app.use('/api/quotes', quoteRoutes); // Quote routes
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

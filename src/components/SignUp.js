@@ -35,6 +35,12 @@ const Button = styled.button`
   }
 `;
 
+const Message = styled.p`
+  color: green;
+  font-size: 1rem;
+  margin-top: 1rem;
+`;
+
 const ErrorMessage = styled.p`
   color: red;
 `;
@@ -43,6 +49,7 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -52,16 +59,21 @@ const SignUp = () => {
       setError('Passwords do not match');
       return;
     }
+
     try {
-      await axios.post('/api/auth/register', { username, password });
-      navigate('/sign-in');
+      await axios.post('http://localhost:5000/api/auth/register', { username, password });
+      setMessage('User created successfully. Please log in.');
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000); // Wait for 3 seconds before redirecting
     } catch (err) {
-      setError('Error registering user');
+      setError('Error creating user');
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
       <Input
         type="text"
         value={username}
@@ -84,6 +96,7 @@ const SignUp = () => {
         required
       />
       <Button type="submit">Sign Up</Button>
+      {message && <Message>{message}</Message>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </Form>
   );
