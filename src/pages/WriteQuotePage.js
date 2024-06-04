@@ -7,8 +7,8 @@ const Container = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 2rem;
-  background-color: #f5f5f5; /* Lys grå bakgrunn */
-  color: #333; /* Mørk tekst */
+  background-color: #f5f5f5; /* Light grey background */
+  color: #333; /* Dark text */
   border-radius: 8px;
 `;
 
@@ -24,24 +24,24 @@ const TextArea = styled.textarea`
   width: 100%;
   height: 150px;
   box-sizing: border-box;
-  border: 1px solid #ccc; /* Lys grå kant */
+  border: 1px solid #ccc; /* Light grey border */
   border-radius: 4px;
-  background-color: white; /* Hvit bakgrunn for tekstfelt */
-  color: #333; /* Mørk tekst */
+  background-color: white; /* White background */
+  color: #333; /* Dark text */
 `;
 
 const Button = styled.button`
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   color: white;
-  background-color: #007bff; /* Blå bakgrunn */
+  background-color: #007bff; /* Blue background */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0056b3; /* Mørkere blå ved hover */
+    background-color: #0056b3; /* Darker blue on hover */
   }
 `;
 

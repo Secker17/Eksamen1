@@ -33,6 +33,18 @@ const EditButton = styled(Link)`
   }
 `;
 
+const DeleteButton = styled.button`
+  color: #ff0000;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const UserPage = () => {
   const { username } = useParams();
   const [quotes, setQuotes] = useState([]);
@@ -58,6 +70,18 @@ const UserPage = () => {
     }
   }, [username]);
 
+  const deleteQuote = async (id) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:5000/api/quotes/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setQuotes(quotes.filter(quote => quote._id !== id));
+    } catch (err) {
+      setError('Error deleting quote');
+    }
+  };
+
   return (
     <Container>
       <h1>Quotes by {username}</h1>
@@ -65,7 +89,10 @@ const UserPage = () => {
       {quotes.map((quote) => (
         <Quote key={quote._id}>
           {quote.text}
-          <EditButton to={`/edit-quote/${quote._id}`}>Edit</EditButton>
+          <div>
+            <EditButton to={`/edit-quote/${quote._id}`}>Edit</EditButton>
+            <DeleteButton onClick={() => deleteQuote(quote._id)}>Delete</DeleteButton>
+          </div>
         </Quote>
       ))}
     </Container>
