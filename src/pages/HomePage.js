@@ -115,7 +115,7 @@ const HomePage = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('http://localhost:6001/api/quotes/all', config);
+        const response = await axios.get('http://10.12.12.96:6001/api/quotes/all', config); // Ensure this URL matches backend
         setPosts(response.data);
       } catch (err) {
         setError('Failed to load posts. Please try again later.');
