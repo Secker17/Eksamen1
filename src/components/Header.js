@@ -4,30 +4,45 @@ import styled from 'styled-components';
 import Logo1 from '../media/Logo11.png';
 
 const HeaderContainer = styled.header`
-  background-color: #222;
-  padding: 1rem;
+  background-color: #333;
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   position: relative;
+  flex-wrap: wrap;
 `;
 
 const Logo = styled.img`
-  height: 140px; /* Adjust the size as needed */
+  height: 80px; /* Adjust the size as needed */
+  @media (max-width: 768px) {
+    height: 60px;
+  }
 `;
 
 const SiteName = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-size: 2rem; /* Adjust the font size as needed */
   color: #fff;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const NavLink = styled(Link)`
@@ -35,6 +50,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
   font-size: 1rem;
   position: relative;
+  padding: 0.5rem;
 
   &::before {
     content: '';
@@ -49,6 +65,10 @@ const NavLink = styled(Link)`
 
   &:hover::before {
     background-color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -59,6 +79,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 1rem;
   position: relative;
+  padding: 0.5rem;
 
   &::before {
     content: '';
@@ -73,6 +94,10 @@ const Button = styled.button`
 
   &:hover::before {
     background-color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
   }
 `;
 

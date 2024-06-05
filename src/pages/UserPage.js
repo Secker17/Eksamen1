@@ -54,7 +54,7 @@ const UserPage = () => {
     const fetchUserQuotes = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/quotes/${username}`, {
+        const response = await axios.get(`http://localhost:6001/api/quotes/${username}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setQuotes(response.data);
@@ -73,7 +73,7 @@ const UserPage = () => {
   const deleteQuote = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/quotes/${id}`, {
+      await axios.delete(`http://localhost:6001/api/quotes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuotes(quotes.filter(quote => quote._id !== id));

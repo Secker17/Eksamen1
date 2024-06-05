@@ -54,7 +54,7 @@ const WriteQuotePage = () => {
     try {
       const token = localStorage.getItem('token');
       const username = localStorage.getItem('username');
-      await axios.post('http://localhost:5000/api/quotes', { text: quote, username }, {
+      await axios.post('http://localhost:6001/api/quotes', { text: quote, username }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate(`/user/${username}`);
