@@ -116,7 +116,6 @@ const HomePage = () => {
           headers: { Authorization: `Bearer ${token}` },
         };
         const response = await axios.get('http://10.12.12.96:6001/api/quotes/all', config);
-=======
         setPosts(response.data);
       } catch (err) {
         setError('Unable to show posts, please log inn.');
