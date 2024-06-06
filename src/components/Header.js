@@ -15,7 +15,7 @@ const HeaderContainer = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 80px; /* Adjust the size as needed */
+  height: 80px; 
   @media (max-width: 768px) {
     height: 60px;
   }
@@ -25,7 +25,7 @@ const SiteName = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem; /* Adjust the font size as needed */
+  font-size: 2rem; 
   color: #fff;
   white-space: nowrap;
 
@@ -122,6 +122,7 @@ const Header = () => {
             <NavLink to="/">Home</NavLink>
             <NavLink to={`/user/${username}`}>My Quotes</NavLink>
             <NavLink to="/write-quote">Write a Quote</NavLink>
+            <NavLink to="/user-guide">User Guide</NavLink>
             <Button onClick={handleLogout}>Logout</Button>
           </>
         ) : (

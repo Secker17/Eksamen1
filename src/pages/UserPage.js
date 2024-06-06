@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 2rem;
-  background-color: #f5f5f5; /* Lys grå bakgrunn */
-  color: #333; /* Mørk tekst */
+  background-color: #f5f5f5;
+  color: #333;
   border-radius: 8px;
 `;
 
@@ -17,7 +17,7 @@ const Quote = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
-  color: #333; /* Mørk tekst */
+  color: #333;
   border-bottom: 1px solid #ccc;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
@@ -47,6 +47,7 @@ const DeleteButton = styled.button`
 
 const UserPage = () => {
   const { username } = useParams();
+  const navigate = useNavigate();
   const [quotes, setQuotes] = useState([]);
   const [error, setError] = useState('');
 
@@ -54,10 +55,17 @@ const UserPage = () => {
     const fetchUserQuotes = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://10.12.12.96:6001/api/quotes/${username}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setQuotes(response.data);
+        const loggedInUser = localStorage.getItem('username');
+
+        if (username !== loggedInUser) {
+          navigate('/login'); // Redirect if the logged-in user is not the requested user
+        } else {
+          const response = await axios.get(`http://10.12.12.96:6001/api/quotes/${username}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setQuotes(response.data);
+        }
+
       } catch (err) {
         setError('Error fetching quotes');
       }
@@ -68,12 +76,12 @@ const UserPage = () => {
     } else {
       setError('No username provided');
     }
-  }, [username]);
+  }, [username, navigate]);
 
   const deleteQuote = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://10.12.12.96:6001/api/quotes${id}`, {
+      await axios.delete(`http://10.12.12.96:6001/api/quotes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuotes(quotes.filter(quote => quote._id !== id));
