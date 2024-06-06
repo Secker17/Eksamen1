@@ -69,7 +69,7 @@ const UserQuotes = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const response = await axios.get(`http://localhost:6001/api/quotes/${username}`, config);
+      const response = await axios.get(`http://10.12.12.96:6001/api/quotes/${username}`, config);
       setQuotes(response.data);
     };
 
@@ -81,7 +81,7 @@ const UserQuotes = () => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    await axios.delete(`http://localhost:6001/api/quotes/${id}`, config);
+    await axios.delete(`http://10.12.12.96:6001/api/quotes/${id}`, config);
     setQuotes(quotes.filter((quote) => quote._id !== id));
   };
 

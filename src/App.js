@@ -7,6 +7,7 @@ import UserPage from './pages/UserPage';
 import WriteQuotePage from './pages/WriteQuotePage';
 import EditQuotePage from './pages/EditQuotePage';
 import Header from './components/Header';
+import UserGuide from './pages/UserGuide';
 
 export const AuthContext = createContext();
 
@@ -69,6 +70,7 @@ const App = () => {
               </PrivateRoute>
             }
           />
+          <Route path="/user-guide" element={<UserGuide />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Router>

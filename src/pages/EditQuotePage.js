@@ -56,7 +56,7 @@ const EditQuotePage = () => {
     const fetchQuote = async () => {
       try {
         const token = localStorage.getItem('token'); // Retrieve the token from local storage
-        const response = await axios.get(`http://localhost:6001/api/quotes/${id}`, {
+        const response = await axios.get(`http://10.12.12.96:6001/api/quotes/${id}`, {
           headers: { Authorization: `Bearer ${token}` }, // Set the authorization header
         });
         setQuote(response.data.text); // Set the fetched quote text to the state
@@ -72,7 +72,7 @@ const EditQuotePage = () => {
     e.preventDefault(); // Prevent the default form submission
     try {
       const token = localStorage.getItem('token'); // Retrieve the token from local storage
-      await axios.put(`http://localhost:6001/api/quotes/${id}`, { text: quote }, {
+      await axios.put(`http://10.12.12.96:6001/api/quotes/${id}`, { text: quote }, {
         headers: { Authorization: `Bearer ${token}` }, // Set the authorization header
       });
       navigate(-1); // Navigate back to the previous page

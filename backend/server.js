@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -23,8 +22,8 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/auth', authRoutes); // Auth routes
-app.use('/api/quotes', quoteRoutes); // Quote routes
+app.use('/api/auth', authRoutes);
+app.use('/api/quotes', quoteRoutes);
 
 const PORT = process.env.PORT || 6001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

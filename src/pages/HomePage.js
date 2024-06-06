@@ -91,12 +91,12 @@ const PostAuthor = styled.span`
 const LoadMoreButton = styled.button`
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  color: #fff;
-  background-color: #fda085;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  margin-top: 100px;
 
   &:hover {
     background-color: #f6d365;
@@ -115,10 +115,10 @@ const HomePage = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('http://localhost:6001/api/quotes/all', config);
+        const response = await axios.get('http://10.12.12.96:6001/api/quotes/all', config);
         setPosts(response.data);
       } catch (err) {
-        setError('Failed to load posts. Please try again later.');
+        setError('Unable to show posts, please log inn.');
       }
     };
 
@@ -147,7 +147,7 @@ const HomePage = () => {
         ))}
       </PostList>
       {visiblePosts < posts.length && (
-        <LoadMoreButton onClick={loadMorePosts}>Load More</LoadMoreButton>
+        <LoadMoreButton onClick={loadMorePosts}>...</LoadMoreButton>
       )}
     </Container>
   );

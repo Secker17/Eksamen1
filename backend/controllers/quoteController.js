@@ -15,12 +15,17 @@ exports.getRandomQuote = async (req, res) => {
 // Get quotes by username
 exports.getUserQuotes = async (req, res) => {
   try {
-    const quotes = await Quote.find({ username: req.params.username });
+    const requestedUsername = req.params.username;
+    if (requestedUsername !== req.user.username) {
+      return res.status(403).json({ error: 'Unauthorized action' });
+    }
+    const quotes = await Quote.find({ username: requestedUsername });
     res.json(quotes);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // Get all quotes
 exports.getAllQuotes = async (req, res) => {

@@ -61,7 +61,7 @@ const SignUp = () => {
     }
 
     try {
-      await axios.post('http://localhost:6001/api/auth/register', { username, password });
+      await axios.post('http://10.12.12.96:6001/api/auth/register', { username, password });
       setMessage('User created successfully. Please log in.');
       setTimeout(() => {
         navigate('/login');
