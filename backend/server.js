@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-dotenv.config();
+dotenv.config(); // Load environment variables
 
 const authRoutes = require('./routes/authRoutes');
 const quoteRoutes = require('./routes/quoteRoutes');
@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     process.exit(1);
   });
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: 'http://forbredelse.mother.ikt-fag.no/' })); // Ensure this matches the frontend URL
 app.use(express.json());
 app.use(cookieParser());
 

@@ -65,6 +65,7 @@ const UserPage = () => {
           });
           setQuotes(response.data);
         }
+
       } catch (err) {
         setError('Error fetching quotes');
       }
